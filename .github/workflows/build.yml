@@ -16,10 +16,14 @@ jobs:
       - name: Build with ndk-build
         run: |
           ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk APP_PLATFORM=android-21
+          echo "Checking for created files..."
+          find . -name "*.so"
+          ls -R
 
-      - name: Find and Upload SO files
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: compiled-so-files
-          path: "**/*.so"
-          
+          path: ./**/*.so
+        continue-on-error: true
+        
