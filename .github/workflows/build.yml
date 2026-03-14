@@ -16,10 +16,10 @@ jobs:
       - name: Build with ndk-build
         run: |
           ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk APP_PLATFORM=android-21
-          
-      - name: Upload Artifacts
+
+      - name: Find and Upload SO files
         uses: actions/upload-artifact@v4
         with:
           name: compiled-so-files
-          path: ./libs/ # تأكدنا من المسار هنا
+          path: "**/*.so"
           
